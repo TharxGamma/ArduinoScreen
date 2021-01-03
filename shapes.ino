@@ -14,19 +14,22 @@ class Ball
 
   int GetPosX() { return PosX; }
   int GetPosY() { return PosY; }
-  int GetVelocity() { return Velocity; }
+  int GetSpeed() { return Speed; }
+  int GetDirection() { return Direction; }
   int GetRadius() { return Radius; }
 
-  void SetVelocity(int Vel) { Velocity = Vel; }
+  void SetSpeed(int S) { Speed = S; }
+  void SetDirection(int Dir) { Direction = Dir; }
   void SetPosX(int X) { PosX = X; }
   void SetPosY(int Y) { PosY = Y; }
 
-  Ball(int X, int Y, int R, int V)
+  Ball(int X, int Y, int R, int S, int Dir)
   {
     PosX = X;
     PosY = Y;
     Radius = R;
-    Velocity = V;
+    Speed = S;
+    Direction = Dir;
   }
   
   private:
@@ -34,7 +37,8 @@ class Ball
   int PosX = 0;
   int PosY = 0;
   int Radius = 0;
-  int Velocity = 0;
+  int Speed = 0;
+  int Direction = 0;
 };
 
 
@@ -54,26 +58,29 @@ void setup()
 void loop() 
 { 
   mylcd.Set_Draw_color(83, 128, 95);
-  Ball MainBall(50,50,15,10);
+  Ball MainBall(50,50,15,10, 5);
 
   while(true)
   {
     int PositionX = MainBall.GetPosX();
     int PositionY = MainBall.GetPosY();
     int Radius = MainBall.GetRadius();
-
-    if(PositionX < SCREEN_MARGIN)
+    
+    if(MainBall.GetPosX() + MainBall.GetRadius() < SCREEN_WIDTH)
     {
-      if(PositionY < SCREEN_MARGIN)
+      if(MainBall.GetPosY() + MainBall.GetRadius() < SCREEN_HEIGHT)
       {
-        DrawCircleTrig(PositionX, PositionY, Radius);
       
-        MainBall.SetPosX(PositionX += MainBall.GetVelocity());
-        MainBall.SetPosY(PositionY += MainBall.GetVelocity());
+          DrawCircleTrig(PositionX, PositionY, Radius);
+            
+          MainBall.SetPosX(PositionX += MainBall.GetSpeed() * MainBall.GetDirection());
+          MainBall.SetPosY(PositionY += MainBall.GetSpeed() * MainBall.GetDirection());
+      
+          mylcd.Fill_Screen(0xffff); //display white
+          Serial.print(PositionX);
       }
-    } 
-    Serial.print(PositionX);
-  }
+      
+   }
 }
 
 void DrawLinePleaseHorizontal(int StartPointX1, int EndPointX2, int PointY1)
