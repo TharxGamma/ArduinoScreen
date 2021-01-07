@@ -2,56 +2,19 @@
 #include <LCDWIKI_KBV.h> //Hardware-specific library
 #include <math.h>
 
+#include "Ball.h"
+
 #define SCREEN_WIDTH mylcd.Get_Width()
 #define SCREEN_HEIGHT mylcd.Get_Height()
 #define SCREEN_MARGIN 10
 
 LCDWIKI_KBV mylcd(ILI9486,A3,A2,A1,A0,A4); //model,cs,cd,wr,rd,reset
-
-class Ball
-{ 
-  public:
-
-  int GetPosX() { return PosX; }
-  int GetPosY() { return PosY; }
-  int GetSpeed() { return Speed; }
-  int GetDirection() { return Direction; }
-  int GetRadius() { return Radius; }
-
-  void SetSpeed(int S) { Speed = S; }
-  void SetDirection(int Dir) { Direction = Dir; }
-  void SetPosX(int X) { PosX = X; }
-  void SetPosY(int Y) { PosY = Y; }
-
-  Ball(int X, int Y, int R, int S, int Dir)
-  {
-    PosX = X;
-    PosY = Y;
-    Radius = R;
-    Speed = S;
-    Direction = Dir;
-  }
-  
-  private:
-
-  int PosX = 0;
-  int PosY = 0;
-  int Radius = 0;
-  int Speed = 0;
-  int Direction = 0;
-};
-
-
-// Creater another function update for the fill circle
-  //mylcd.Fill_Circle(PosY, PosX, Radius);
   
 void setup() 
 {
     mylcd.Init_LCD(); //initialize lcd
     mylcd.Fill_Screen(0xffff); //display white
-    
-    
-    
+
     Serial.begin(115200); 
 }
 
@@ -79,8 +42,10 @@ void loop()
           mylcd.Fill_Screen(0xffff); //display white
           Serial.print(PositionX);
       }
-      
+
    }
+
+  }
 }
 
 void DrawLinePleaseHorizontal(int StartPointX1, int EndPointX2, int PointY1)
