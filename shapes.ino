@@ -9,7 +9,9 @@
 #define SCREEN_MARGIN 10
 
 LCDWIKI_KBV mylcd(ILI9486,A3,A2,A1,A0,A4); //model,cs,cd,wr,rd,reset
-  
+
+Ball MainBall(50,50,15);
+
 void setup() 
 {
     mylcd.Init_LCD(); //initialize lcd
@@ -21,30 +23,17 @@ void setup()
 void loop() 
 { 
   mylcd.Set_Draw_color(83, 128, 95);
-  Ball MainBall(50,50,15,10, 5);
+  
 
   while(true)
   {
     int PositionX = MainBall.GetPosX();
     int PositionY = MainBall.GetPosY();
     int Radius = MainBall.GetRadius();
-    
-    if(MainBall.GetPosX() + MainBall.GetRadius() < SCREEN_WIDTH)
-    {
-      if(MainBall.GetPosY() + MainBall.GetRadius() < SCREEN_HEIGHT)
-      {
-      
-          DrawCircleTrig(PositionX, PositionY, Radius);
-            
-          MainBall.SetPosX(PositionX += MainBall.GetSpeed() * MainBall.GetDirection());
-          MainBall.SetPosY(PositionY += MainBall.GetSpeed() * MainBall.GetDirection());
-      
-          mylcd.Fill_Screen(0xffff); //display white
-          Serial.print(PositionX);
-      }
 
-   }
-
+    DrawCircleTrig(PositionX, PositionY, Radius);
+    CalculateAngle(10, 45);      
+    mylcd.Fill_Screen(0xffff); //display white
   }
 }
 
@@ -132,7 +121,20 @@ void DrawCircleTrig(int CenterPointA, int CenterPointB, float Radius)
 }
 
 
+void CalculateAngle(int Direction, int Speed)
+{
+  MainBall.SetSpeed(Speed, Direction);
+  
+  float AngleToRadians = Direction * PI/180; 
 
+  int x = (Speed * sin(AngleToRadians));
+  int y = (Speed * cos(AngleToRadians));
+  
+  MainBall.SetPosX(x);
+  MainBall.SetPosY(y);
+  
+  
+}
 
 
 

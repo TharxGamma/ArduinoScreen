@@ -5,16 +5,13 @@ class Ball
 { 
   public:
   
-  Ball(int X, int Y, int R, int S, int Dir);
+  Ball(int X, int Y, int R);
 
-  int GetPosX() { return PosX; }
-  int GetPosY() { return PosY; }
-  int GetSpeed() { return Speed; }
-  int GetDirection() { return Direction; }
-  int GetRadius() { return Radius; }
+  int GetPosX();
+  int GetPosY(); 
+  int GetRadius(); 
 
-  void SetSpeed(int S);
-  void SetDirection(int Dir);
+  void SetSpeed(int VelX, int VelY);
   void SetPosX(int X);
   void SetPosY(int Y);
 
@@ -24,8 +21,8 @@ class Ball
   int PosX = 0;
   int PosY = 0;
   int Radius = 0;
-  int Speed = 0;
-  int Direction = 0;
+  int VelocityX = 0;
+  int VelocityY = 0;
 };
 
 #endif

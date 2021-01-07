@@ -1,22 +1,25 @@
 #include "Ball.h"
 
-Ball::Ball(int X, int Y, int R, int S, int Dir)
+Ball::Ball(int X, int Y, int R)
 {
   PosX = X;
   PosY = Y;
   Radius = R;
-  Speed = S;
-  Direction = Dir;
 }
 
-void Ball::SetSpeed(int S) 
-{ 
-  Speed = S; 
+int Ball::GetPosX() 
+{
+  return PosX; 
 }
 
-void Ball::SetDirection(int Dir) 
+int Ball::GetPosY() 
 { 
-  Direction = Dir; 
+  return PosY; 
+}
+  
+int Ball::GetRadius() 
+{ 
+  return Radius; 
 }
 
 void Ball::SetPosX(int X) 
@@ -27,4 +30,10 @@ void Ball::SetPosX(int X)
 void Ball::SetPosY(int Y) 
 { 
   PosY = Y; 
+}
+
+void Ball::SetSpeed(int VelX, int VelY)
+{
+  VelocityX = VelX;
+  VelocityY = VelY;
 }
