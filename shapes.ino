@@ -33,6 +33,10 @@ void loop()
 
     DrawCircleTrig(PositionX, PositionY, Radius);
     CalculateAngle(10, 45);      
+
+    MainBall.SetPosX(PositionX += 10);
+    MainBall.SetPosY(PositionY += 10);
+    
     mylcd.Fill_Screen(0xffff); //display white
   }
 }
@@ -121,18 +125,14 @@ void DrawCircleTrig(int CenterPointA, int CenterPointB, float Radius)
 }
 
 
-void CalculateAngle(int Direction, int Speed)
-{
-  MainBall.SetSpeed(Speed, Direction);
-  
+void CalculateAngle(int Direction, int Distance)
+{ 
   float AngleToRadians = Direction * PI/180; 
 
-  int x = (Speed * sin(AngleToRadians));
-  int y = (Speed * cos(AngleToRadians));
+  int x = (Distance * sin(AngleToRadians));
+  int y = (Distance * cos(AngleToRadians));
   
-  MainBall.SetPosX(x);
-  MainBall.SetPosY(y);
-  
+  MainBall.SetSpeed(x, y); 
   
 }
 
