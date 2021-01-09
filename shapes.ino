@@ -17,6 +17,8 @@ void setup()
     mylcd.Init_LCD(); //initialize lcd
     mylcd.Fill_Screen(0xffff); //display white
 
+    MainBall.SetSpeed(10,45);
+    
     Serial.begin(115200); 
 }
 
@@ -27,15 +29,8 @@ void loop()
 
   while(true)
   {
-    int PositionX = MainBall.GetPosX();
-    int PositionY = MainBall.GetPosY();
-    int Radius = MainBall.GetRadius();
-
-    DrawCircleTrig(PositionX, PositionY, Radius);
-  
-
-    MainBall.SetPosX(PositionX += 10);
-    MainBall.SetPosY(PositionY += 10);
+    DrawCircleTrig(MainBall.GetPosX(), MainBall.GetPosY(), MainBall.GetRadius());
+    MainBall.Update(); 
     
     mylcd.Fill_Screen(0xffff); //display white
   }

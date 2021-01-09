@@ -12,10 +12,14 @@ class Ball
   int GetPosX();
   int GetPosY(); 
   int GetRadius(); 
+  int GetVelocityX();
+  int GetVelocityY ();
 
   void SetSpeed(int Direction, int Speed);
   void SetPosX(int X);
   void SetPosY(int Y);
+  void Update();
+  void DrawCircleTrig();
 
 
   private:

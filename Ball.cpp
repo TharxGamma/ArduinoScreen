@@ -10,6 +10,25 @@ Ball::Ball(int X, int Y, int R)
   Radius = R;
 }
 
+void Ball::Update()
+{
+  int NextPosX = Ball::GetPosX() + Ball::GetVelocityX(); 
+  int NextPosY = Ball::GetPosY() + Ball::GetVelocityY();
+  Ball::SetPosX(NextPosX);
+  Ball::SetPosY(NextPosY);
+  
+}
+
+int Ball::GetVelocityX()
+{
+  return VelocityX;
+}
+
+int Ball::GetVelocityY()
+{
+  return VelocityY;
+}
+
 int Ball::GetPosX() 
 {
   return PosX; 
