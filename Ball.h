@@ -1,6 +1,8 @@
 #ifndef BALL_H
 #define BALL_H
 
+#include <math.h>
+
 class Ball
 { 
   public:
@@ -11,7 +13,7 @@ class Ball
   int GetPosY(); 
   int GetRadius(); 
 
-  void SetSpeed(int VelX, int VelY);
+  void SetSpeed(int Direction, int Speed);
   void SetPosX(int X);
   void SetPosY(int Y);
 

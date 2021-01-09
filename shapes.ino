@@ -1,6 +1,6 @@
 #include <LCDWIKI_GUI.h> //Core graphics library
 #include <LCDWIKI_KBV.h> //Hardware-specific library
-#include <math.h>
+
 
 #include "Ball.h"
 
@@ -32,7 +32,7 @@ void loop()
     int Radius = MainBall.GetRadius();
 
     DrawCircleTrig(PositionX, PositionY, Radius);
-    CalculateAngle(10, 45);      
+  
 
     MainBall.SetPosX(PositionX += 10);
     MainBall.SetPosY(PositionY += 10);
@@ -123,22 +123,6 @@ void DrawCircleTrig(int CenterPointA, int CenterPointB, float Radius)
   }
 
 }
-
-
-void CalculateAngle(int Direction, int Distance)
-{ 
-  float AngleToRadians = Direction * PI/180; 
-
-  int x = (Distance * sin(AngleToRadians));
-  int y = (Distance * cos(AngleToRadians));
-  
-  MainBall.SetSpeed(x, y); 
-  
-}
-
-
-
-
 
 
 

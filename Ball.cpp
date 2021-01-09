@@ -1,5 +1,8 @@
 #include "Ball.h"
 
+#include <math.h>
+#define _USE_MATH_DEFINES 
+
 Ball::Ball(int X, int Y, int R)
 {
   PosX = X;
@@ -32,8 +35,13 @@ void Ball::SetPosY(int Y)
   PosY = Y; 
 }
 
-void Ball::SetSpeed(int VelX, int VelY)
+void Ball::SetSpeed(int Direction, int Speed)
 {
-  VelocityX = VelX;
-  VelocityY = VelY;
+  float AngleToRadians = Direction * M_PI/180; 
+
+  int X = (Speed * sin(AngleToRadians));
+  int Y = (Speed * cos(AngleToRadians));
+  
+  VelocityX = X;
+  VelocityY = Y;
 }
