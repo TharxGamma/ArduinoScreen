@@ -25,33 +25,34 @@ void setup()
 void loop() 
 { 
   mylcd.Set_Draw_color(83, 128, 95);
-
+ 
   Serial.print(SCREEN_HEIGHT);
   Serial.print(SCREEN_WIDTH);
   while(true)
   {
-    DrawCircleTrig(MainBall.GetPosX(), MainBall.GetPosY(), MainBall.GetRadius());
-    MainBall.Update(); 
-
-    if(MainBall.GetPosY() + MainBall.GetRadius() > SCREEN_HEIGHT)
+    if(MainBall.GetPosY() + MainBall.GetRadius() >= SCREEN_HEIGHT)
     {
       MainBall.SetVelocityY(-30);
     }
 
-    if(MainBall.GetPosX() + MainBall.GetRadius() > SCREEN_WIDTH)
+    if(MainBall.GetPosX() + MainBall.GetRadius() >= SCREEN_WIDTH)
     {
       MainBall.SetVelocityX(-30);
     }
 
-    if(MainBall.GetPosY() - MainBall.GetRadius() < 0)
+    if(MainBall.GetPosY() - MainBall.GetRadius() <= 0)
     {
       MainBall.SetVelocityY(30);
     }
 
-    if(MainBall.GetPosX() - MainBall.GetRadius() < 0)
+    if(MainBall.GetPosX() - MainBall.GetRadius() <= 0)
     {
       MainBall.SetVelocityX(30);
     }
+    
+    
+    DrawCircleTrig(MainBall.GetPosX(), MainBall.GetPosY(), MainBall.GetRadius());
+    MainBall.Update(); 
 
     
     mylcd.Fill_Screen(0xffff); //display white
