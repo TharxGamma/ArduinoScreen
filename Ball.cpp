@@ -14,8 +14,8 @@ void Ball::Update()
 {
   int NextPosX = Ball::GetPosX() + Ball::GetVelocityX(); 
   int NextPosY = Ball::GetPosY() + Ball::GetVelocityY();
-  Ball::SetPosX(NextPosX);
-  Ball::SetPosY(NextPosY);
+  SetPosX(NextPosX);
+  SetPosY(NextPosY);
   
 }
 
@@ -27,6 +27,16 @@ int Ball::GetVelocityX()
 int Ball::GetVelocityY()
 {
   return VelocityY;
+}
+
+void Ball::SetVelocityX(int X)
+{
+  VelocityX = X;
+}
+
+void Ball::SetVelocityY(int Y)
+{
+  VelocityY = Y;
 }
 
 int Ball::GetPosX() 

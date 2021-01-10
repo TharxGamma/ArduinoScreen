@@ -18,6 +18,8 @@ class Ball
   void SetSpeed(int Direction, int Speed);
   void SetPosX(int X);
   void SetPosY(int Y);
+  void SetVelocityX(int X);
+  void SetVelocityY(int Y);
   void Update();
   void DrawCircleTrig();
 
