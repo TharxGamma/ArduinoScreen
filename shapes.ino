@@ -6,7 +6,7 @@
 
 #define SCREEN_WIDTH mylcd.Get_Width()
 #define SCREEN_HEIGHT mylcd.Get_Height()
-#define SCREEN_MARGIN 10
+#define SCREEN_MARGIN 15
 
 LCDWIKI_KBV mylcd(ILI9486,A3,A2,A1,A0,A4); //model,cs,cd,wr,rd,reset
 
@@ -25,35 +25,32 @@ void setup()
 void loop() 
 { 
   mylcd.Set_Draw_color(83, 128, 95);
- 
-  Serial.print(SCREEN_HEIGHT);
-  Serial.print(SCREEN_WIDTH);
+
   while(true)
   {
-    if(MainBall.GetPosY() + MainBall.GetRadius() >= SCREEN_HEIGHT)
+    DrawCircleTrig(MainBall.GetPosX(), MainBall.GetPosY(), MainBall.GetRadius());
+    MainBall.Update(); 
+    
+    if(MainBall.GetPosY() + MainBall.GetRadius() + MainBall.GetVelocityY() >= SCREEN_HEIGHT)
     {
       MainBall.SetVelocityY(-30);
     }
 
-    if(MainBall.GetPosX() + MainBall.GetRadius() >= SCREEN_WIDTH)
+    if(MainBall.GetPosX() + MainBall.GetRadius() + MainBall.GetVelocityX() >= SCREEN_WIDTH)
     {
       MainBall.SetVelocityX(-30);
     }
 
-    if(MainBall.GetPosY() - MainBall.GetRadius() <= 0)
+    if(MainBall.GetPosY() + MainBall.GetRadius() + MainBall.GetVelocityY() <= 0)
     {
       MainBall.SetVelocityY(30);
     }
 
-    if(MainBall.GetPosX() - MainBall.GetRadius() <= 0)
+    if(MainBall.GetPosX() + MainBall.GetRadius() + MainBall.GetVelocityX() <= 0)
     {
       MainBall.SetVelocityX(30);
     }
     
-    
-    DrawCircleTrig(MainBall.GetPosX(), MainBall.GetPosY(), MainBall.GetRadius());
-    MainBall.Update(); 
-
     
     mylcd.Fill_Screen(0xffff); //display white
   }
